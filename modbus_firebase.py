@@ -492,6 +492,10 @@ class ModbusFirebase:
         seconds = 0
         while True:
             if self.live_data:
+                self.live_countdown -= 1
+                if self.live_countdown == 0:
+                    config.logging.warning("Firebase Test: stopping live data! ")
+                    self.live_data = False
                 rate = 1
             else:
                 rate = normal_rate
@@ -503,7 +507,7 @@ class ModbusFirebase:
                     seconds = 0
                     self.get_test_data()
             except IoTHubError as e:
-                config.logging.error('Firebase Test: polling_loop: IoT Hub Error- {0}'.format(e.message))
+                config.logging.warning('Firebase Test: polling_loop: IoT Hub Error- {0}'.format(e.message))
             except Exception as e:
                 config.logging.warning("Firebase Test: polling_loop (Unknown, don't die!): {0}".format(e.message))
 
@@ -533,7 +537,7 @@ class ModbusFirebase:
         # publish current cycle to azure
         self._send_to_azure(self.current_cycle)
 
-    def liveDataInitiateCounter(self):
+    def liveDataInitiateCounter(self, timer):
         """
         Initializes a countdown counter of 60 seconds, this will be the time the live data will be active
         meaning a 1 second polling rate
@@ -750,7 +754,6 @@ class ModbusFirebase:
                             if value == 1:
                                 self.live_data = True
                                 self.live_countdown = 60
-                                self.liveDataInitiateCounter()
                             elif value == 0:
                                 self.live_data = False
 
