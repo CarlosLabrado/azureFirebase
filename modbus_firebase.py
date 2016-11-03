@@ -484,11 +484,17 @@ class ModbusFirebase:
         :param rate: Amount of seconds between polling
         """
         config.logging.info("Firebase Test: polling_loop Thread Running ...")
+
+        normal_rate = rate  # save initial rate
+
         seconds = 0
-        if self.live_data:
-            rate = 1
+
         seconds = 0
         while True:
+            if self.live_data:
+                rate = 1
+            else:
+                rate = normal_rate
             try:
                 if seconds < rate:
                     time.sleep(1)
@@ -745,6 +751,8 @@ class ModbusFirebase:
                                 self.live_data = True
                                 self.live_countdown = 60
                                 self.liveDataInitiateCounter()
+                            elif value == 0:
+                                self.live_data = False
 
                         except IOError as e:
                             config.logging.warning("Firebase Test: dunno what happened ")
