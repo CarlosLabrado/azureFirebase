@@ -747,20 +747,17 @@ class ModbusFirebase:
                         else:
                             error = False
                 elif variable_name == 'fb':
-                    error = True
-                    while error:
-                        try:
-                            config.logging.warning("Firebase Test: live data! = {0}".format(value))
-                            if value == 1:
-                                self.live_data = True
-                                self.live_countdown = 60
-                            elif value == 0:
-                                self.live_data = False
+                    try:
+                        config.logging.warning("Firebase Test: live data! = {0}".format(value))
+                        if value == 1:
+                            self.live_data = True
+                            self.live_countdown = 60
+                        elif value == 0:
+                            self.live_data = False
 
-                        except IOError as e:
-                            config.logging.warning("Firebase Test: dunno what happened ")
-                        else:
-                            error = False
+                    except IOError as e:
+                        config.logging.warning("Firebase Test: dunno what happened ")
+
                 else:
                     raise Exception("Don't know that command!")
 
