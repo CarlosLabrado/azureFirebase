@@ -493,6 +493,7 @@ class ModbusFirebase:
         while True:
             if self.live_data:
                 self.live_countdown -= 1
+                time.sleep(1)
                 if self.live_countdown == 0:
                     config.logging.warning("Firebase Test: stopping live data! ")
                     self.live_data = False
