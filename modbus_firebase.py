@@ -537,6 +537,7 @@ class ModbusFirebase:
             self.live_countdown -= 1
             time.sleep(1)
             if self.live_countdown == 0:
+                config.logging.warning("Firebase Test: stopping live data! ")
                 self.live_data = False
                 break
 
@@ -742,7 +743,7 @@ class ModbusFirebase:
                             config.logging.warning("Firebase Test: live data! = {0}".format(value))
                             if value == 1:
                                 self.live_data = True
-                                self.live_data = 60
+                                self.live_countdown = 60
                                 self.liveDataInitiateCounter()
 
                         except IOError as e:
