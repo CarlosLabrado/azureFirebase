@@ -17,9 +17,9 @@ else:
 
     error = True
     try:
-        from modbus_lufkin import ModbusLufkin
-        lufkin = ModbusLufkin(address=config.modbus_address)
-        polling = threading.Thread(target=lufkin.polling_loop,
+        from modbus_firebase import ModbusFirebase
+        firebase = ModbusFirebase(address=config.modbus_address)
+        polling = threading.Thread(target=firebase.polling_loop,
                                    args=[config.polling_rate])
         polling.daemon = True
         polling.start()
