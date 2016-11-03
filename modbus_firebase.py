@@ -519,6 +519,11 @@ class ModbusFirebase:
 
         self.current_cycle["fb"] = 1
 
+        config.logging.debug('FirebaseTest: Current Cycle: \n{0}'
+                             .format(json.dumps(self.current_cycle, indent=4)))
+
+        # publish current cycle to azure
+        self._send_to_azure(self.current_cycle)
 
     def liveDataInitiateCounter(self):
         """

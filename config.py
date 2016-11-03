@@ -24,9 +24,6 @@ if console_only == 1:
 
 else:
 
-    modbus_address = int(os.environ['modbus_address'])
-    logging.warning("Environment Variable: modbus_address = {0}".format(modbus_address))
-
     azure_iot_logs = int(os.environ['azure_iot_logs'])
     logging.warning("Environment Variable: azure_iot_logs = {0}".format(azure_iot_logs))
 
