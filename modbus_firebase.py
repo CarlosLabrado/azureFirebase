@@ -516,7 +516,10 @@ class ModbusFirebase:
         self.current_cycle["csc"] = 1
         self.current_cycle["at"] = 0
 
-        self.current_cycle["fb"] = 1
+        if self.live_data:
+            self.current_cycle["fb"] = 1
+        else :
+            self.current_cycle["fb"] = 0
 
         config.logging.debug('FirebaseTest: Current Cycle: \n{0}'
                              .format(json.dumps(self.current_cycle, indent=4)))
