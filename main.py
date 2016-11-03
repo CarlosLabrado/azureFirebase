@@ -18,7 +18,8 @@ else:
     error = True
     try:
         from modbus_firebase import ModbusFirebase
-        firebase = ModbusFirebase(address=config.modbus_address)
+        modbus_address = 1  # TODO: delete this, testing only
+        firebase = ModbusFirebase(address=modbus_address)
         polling = threading.Thread(target=firebase.polling_loop,
                                    args=[config.polling_rate])
         polling.daemon = True
