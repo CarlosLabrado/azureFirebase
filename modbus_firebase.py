@@ -5,7 +5,6 @@ import random
 import minimalmodbus
 import serial
 import threading
-import piplates.DAQCplate as DAQC
 import iothub_client
 from iothub_client import *
 
@@ -105,7 +104,7 @@ class ModbusFirebase:
         self.__iot_hub_client_init()
 
         # Init modbus instrument
-        self.__init_instrument(address)
+        # self.__init_instrument(address)
 
     def __iot_hub_client_init(self):
         """
@@ -194,16 +193,16 @@ class ModbusFirebase:
         :param piplates_input: Analog input
         :return: Pressure in psi
         """
-        volts = DAQC.getADC(0, plplates_input)
-        if plplates_input == 0:
-            pressure = (750.0 * (volts - 1)) * config.pressure_factor_0
-            print ('AI0 = [{0}] Volts -> Tubing Pressure = [{1}] PSI'.format(volts, pressure))
-        elif plplates_input == 1:
-            pressure = (750.0 * (volts - 1)) * config.pressure_factor_1
-            print ('AI1 = [{0}] Volts -> Casing Pressure = [{1}] PSI'.format(volts, pressure))
-        else:
-            pressure = (750.0 * (volts - 1))
-        return pressure
+        # volts = DAQC.getADC(0, plplates_input)
+        # if plplates_input == 0:
+        #     pressure = (750.0 * (volts - 1)) * config.pressure_factor_0
+        #     print ('AI0 = [{0}] Volts -> Tubing Pressure = [{1}] PSI'.format(volts, pressure))
+        # elif plplates_input == 1:
+        #     pressure = (750.0 * (volts - 1)) * config.pressure_factor_1
+        #     print ('AI1 = [{0}] Volts -> Casing Pressure = [{1}] PSI'.format(volts, pressure))
+        # else:
+        #     pressure = (750.0 * (volts - 1))
+        # return pressure
 
     def _get_pacemaker_data(self):
         """
