@@ -2,8 +2,7 @@ FROM resin/rpi-raspbian:jessie
 
 RUN apt-cache policy
 RUN apt-get update && apt-get install -y nano net-tools git python python-dev python-pip python-serial gcc sudo
-RUN apt-get update && apt-get install -y cmake iputils-ping usbutils usb-modeswitch wvdial
-RUN apt-get update && apt-get install ifupdown resolvconf
+RUN apt-get update && apt-get install -y cmake iputils-ping usbutils usb-modeswitch wvdial ifupdown
 RUN pip install requests minimalmodbus
 RUN pip install -U RPi.GPIO
 RUN git clone --recursive https://github.com/Azure/azure-iot-sdks.git
