@@ -6,7 +6,7 @@ import time
 import config
 import threading
 
-__author__ = 'Cesar'
+__author__ = 'Cesardo'
 
 if config.console_only:
     while True:
